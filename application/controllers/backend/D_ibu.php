@@ -22,6 +22,7 @@ class D_ibu extends CI_Controller {
 
     $data['judul'] = 'Data Keluarga';
     $data['get_ibu'] = $this->m_data->get_all_ibu();
+    $data['get_register'] = $this->db->get('tb_register')->result_array();
     $data['ses_user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
 
     $this->form_validation->set_rules('nama_ibu', 'nama istri', 'trim|required');

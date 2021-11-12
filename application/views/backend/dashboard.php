@@ -129,7 +129,7 @@
                         <td><?= $data['no_hp']?></td>
 
                         <td>
-                          <?php if($data['no_hp'] != 0):?>
+                          <?php if($data['aktivasi'] != 0):?>
                           <div class="badge badge-success">Teraktivasi</div>
                           <?php else:?>
                           <div class="badge badge-danger">Tidak Teraktivasi</div>

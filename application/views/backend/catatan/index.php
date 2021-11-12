@@ -118,7 +118,7 @@
               <label for="field-1" class="control-label">NO. Registrasi</label>
               <select name="register_id" id="register_id" class="form-control">
                 <?php foreach($get_noregis as $register):?>
-                <option value="<?= $register['id']?>"><?= $register['no_regis']?></option>
+                <option value="<?= $register['regis_id']?>"><?= $register['no_regis']?></option>
                 <?php endforeach;?>
               </select>
             </div>
@@ -251,8 +251,8 @@
               <label for="field-1" class="control-label">NO. Registrasi</label>
               <select name="register_id" id="register_id" class="form-control">
                 <?php foreach($get_noregis as $register):?>
-                <option value="<?= $register['id']?>" <?php if($edit['register_id'] != $register['id']):?> <?php else:?>
-                  selected <?php endif;?>>
+                <option value="<?= $register['regis_id']?>" <?php if($edit['register_id'] != $register['regis_id']):?>
+                  <?php else:?> selected <?php endif;?>>
                   <?= $register['no_regis']?></option>
                 <?php endforeach;?>
               </select>

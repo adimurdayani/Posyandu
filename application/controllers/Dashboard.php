@@ -30,6 +30,19 @@ class Dashboard extends CI_Controller {
     
   }
 
+  public function notifikasi()
+  {
+    $total_registrasi = $this->db->get('tb_register')->num_rows();
+    $get_antrian = $this->m_data->get_notifikasi();
+
+    $result['total_registrasi'] = $total_registrasi;
+    $result['nama'] = $get_antrian->nama;
+    $result['tanggal'] = $get_antrian->created_at;
+    $result['msg'] = "Akun baru telah terdaftar, segera verifikasi akun!";
+    
+    echo json_encode($result);
+  }
+
 }
 
 /* End of file Dashboard.php */

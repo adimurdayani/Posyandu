@@ -3,6 +3,46 @@
   <div class="container-fluid">
     <ul class="list-unstyled topnav-menu float-right mb-0">
 
+      <li class="dropdown notification-list topbar-dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" role="button"
+          aria-haspopup="false" aria-expanded="false">
+          <i class="fe-bell noti-icon"></i>
+          <span class="badge badge-danger rounded-circle noti-icon-badge" id="total-notifikasi">0</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5 class="m-0">
+              <span class="float-right">
+              </span>Notification
+            </h5>
+          </div>
+
+          <div class="noti-scroll" data-simplebar>
+
+            <!-- item-->
+            <a href="<?= base_url('backend/d_regis')?>" class="dropdown-item notify-item">
+              <div class="notify-icon bg-warning">
+                <i class="mdi mdi-account-plus"></i>
+              </div>
+              <p id="nama" class=" mb-0"></p>
+              <p id="pesan" class="notify-details">Tidak ada akun registrasi.
+              </p>
+              <small class="text-muted float-right" id="tanggal"></small>
+            </a>
+
+            <!-- All-->
+            <a href="<?= base_url('backend/d_regis')?>"
+              class="dropdown-item text-center text-primary notify-item notify-all">
+              View all
+              <i class="fe-arrow-right"></i>
+            </a>
+
+          </div>
+      </li>
+
+
       <li class="dropdown d-none d-lg-inline-block">
         <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen" href="#">
           <i class="fe-maximize noti-icon"></i>

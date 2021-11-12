@@ -46,7 +46,7 @@ class D_regis extends CI_Controller {
       $id = $this->input->post('id');
       
       $data = [
-        'aktivasi' => 1,
+        'aktivasi' => $this->input->post('aktivasi'),
         'created_at' => date("d M Y")
       ];
 
@@ -61,6 +61,7 @@ class D_regis extends CI_Controller {
           Data berhasil terupdate!
         </div>'
       );
+      $this->sendMessage($id);
       redirect('backend/d_regis');
       
     }   
@@ -79,6 +80,50 @@ class D_regis extends CI_Controller {
         </div>'
       );
       redirect('backend/d_regis');
+  }
+  
+  public function sendMessage($id_register)
+  {
+    $gettoken = $this->db->get_where('tb_register', ['id' => $id_register])->row();
+
+    $getAll = '["'.$gettoken->token_id.'"]';
+
+    $curl = curl_init();
+    $authKey = "key=AAAADoaZyKw:APA91bFSFWZPy2h7PFxpt3C_4T2cvCVYEQjObdz80-vnOTYtaebjqcBKB-aBwwNzIfJ1eUBjqt0DI9OyhZ7Rb13V9A2sXgS5JysKlpeEywY1UYgV5vRXSHL7ZZB4mW_xOU1GiD3jJBQW";
+    $registration_ids =  $getAll;
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "https://fcm.googleapis.com/fcm/send",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => '{
+                    "registration_ids": ' . $registration_ids . ',
+                    "notification": {
+                        "title": "Register sukses",
+                        "body": "Anda telah berhasil membuat akun!"
+                    }
+                  }',
+      CURLOPT_HTTPHEADER => array(
+        "Authorization: " . $authKey,
+        "Content-Type: application/json",
+        "cache-control: no-cache"
+      ),
+    ));
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    redirect('backend/d_regis');
+
+    curl_close($curl);
+
+    if ($err) {
+      echo "cURL Error #:" . $err;
+    } else {
+      // response ketika data berhasil disimpan
+    }
   }
 
 }

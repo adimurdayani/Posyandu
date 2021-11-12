@@ -23,12 +23,13 @@ class User extends BD_Controller {
       ], REST_Controller::HTTP_BAD_REQUEST);
 
     } else {
-      $id = $this->input->post('id');
+      $id = $this->post('id');
       
       $data = [
         'nama' => htmlspecialchars($this->post('nama', true)),
         'username' => htmlspecialchars($this->post('username', true)),
         'email' => htmlspecialchars($this->post('email', true)),
+        'no_hp' => htmlspecialchars($this->post('no_hp', true)),
         'created_at' => date("d M Y H:i:s")
       ];
 

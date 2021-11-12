@@ -47,10 +47,11 @@
               <table id="scroll-horizontal-datatable" class="table w-100 nowrap">
                 <thead>
                   <tr>
-                    <th class="text-center"></th>
-                    <th class="text-center">No. Registrasi</th>
-                    <th class="text-center">Nama Istri</th>
-                    <th class="text-center">Nama Suami</th>
+                    <th></th>
+                    <th>No. Registrasi</th>
+                    <th>Email Registrasi</th>
+                    <th>Nama Istri</th>
+                    <th>Nama Suami</th>
                   </tr>
                 </thead>
 
@@ -64,9 +65,10 @@
                       <a href="<?= base_url('backend/d_ibu/detail/') . $data['id']?>" class="badge badge-success"><i
                           class="mdi mdi-eye" title="Detail"></i></a>
                     </td>
-                    <td class="text-center"><?= $data['no_regis']?></td>
-                    <td class="text-center"><?= $data['nama_ibu']?></td>
-                    <td class="text-center"><?= $data['nama_suami']?></td>
+                    <td><?= $data['no_regis']?></td>
+                    <td><?= $data['email']?></td>
+                    <td><?= $data['nama_ibu']?></td>
+                    <td><?= $data['nama_suami']?></td>
                   </tr>
                   <?php endforeach;?>
                 </tbody>
@@ -97,7 +99,14 @@
               <h4>LENGKAPI DATA KELUARGA</h4>
             </center>
 
-            <input type="hidden" name="user_id" id="user_id" value="<?= $ses_user['user_id']?>">
+            <div class="form-group">
+              <label for="field-1" class="control-label">Akun Registrasi</label>
+              <select name="regis_id" id="regis_id" class="form-control">
+                <?php foreach($get_register  as $regis):?>
+                <option value="<?= $regis['id']?>"><?= $regis['nama']?></option>
+                <?php endforeach;?>
+              </select>
+            </div>
 
             <div class="form-group">
               <label for="field-1" class="control-label">NO. Registrasi</label>

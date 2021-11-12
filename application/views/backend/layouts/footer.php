@@ -69,6 +69,27 @@ $(document).ready(function() {
 })
 </script>
 
+<script>
+$(document).ready(function() {
+
+  setInterval(function() {
+    $.ajax({
+      url: "<?= base_url('dashboard/notifikasi')?>",
+      type: "POST",
+      dataType: "json",
+      data: {},
+      success: function(data) {
+        $("#total-notifikasi").html(data.total_registrasi);
+        $("#nama").html(data.nama);
+        $("#tanggal").html(data.tanggal);
+        $("#pesan").html(data.msg);
+      }
+    });
+  }, 1000)
+
+})
+</script>
+
 </body>
 
 </html>

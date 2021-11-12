@@ -59,12 +59,12 @@
                     <td><?= $data['no_hp']?></td>
 
                     <td>
-                      <?php if($data['no_hp'] != 0):?>
-                      <a href="" class="badge badge-success" data-target="#status-modal<?= $data['id']?>"
-                        data-toggle="modal">Teraktivasi</a>
-                      <?php else:?>
+                      <?php if($data['aktivasi'] != 1):?>
                       <a href="" class="badge badge-danger" data-target="#status-modal<?= $data['id']?>"
                         data-toggle="modal">Tidak Teraktivasi</a>
+                      <?php else:?>
+                      <a href="" class="badge badge-success" data-target="#status-modal<?= $data['id']?>"
+                        data-toggle="modal">Teraktivasi</a>
                       <?php endif;?>
                     </td>
                     <td><?= $data['created_at']?></td>
@@ -101,9 +101,9 @@
             <div class="form-group">
               <label for="field-1" class="control-label">Pilih Aktivasi</label>
               <select name="aktivasi" id="aktivasi" class="form-control">
-                <option value="0" <?php if($edit['aktivasi'] != 0):?> <?php else:?> selected <?php endif;?>>Tidak
+                <option value="0" <?php if($edit['aktivasi'] == 0):?> selected <?php endif;?>>Tidak
                   Teraktivasi</option>
-                <option value="1" <?php if($edit['aktivasi'] != 1):?> <?php else:?> selected <?php endif;?>>Teraktivasi
+                <option value="1" <?php if($edit['aktivasi'] == 1):?> selected <?php endif;?>>Teraktivasi
                 </option>
               </select>
             </div>

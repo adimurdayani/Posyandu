@@ -16,7 +16,7 @@ class M_data extends CI_Model {
 
   public function get_all_ibu()
   {
-    $query = "SELECT `tb_ibu`.*
+    $query = "SELECT `tb_ibu`.*, `tb_register`.`email`
               FROM `tb_ibu`
               JOIN `tb_register` ON `tb_ibu`.`regis_id` = `tb_register`.`id`
               ORDER BY `tb_ibu`.`id` DESC
@@ -38,7 +38,7 @@ class M_data extends CI_Model {
   { 
     $query = "SELECT `catatan_ibu`.*, `tb_ibu`.`no_regis`
               FROM `catatan_ibu`
-              JOIN `tb_ibu` ON `catatan_ibu`.`register_id` = `tb_ibu`.`id`
+              JOIN `tb_ibu` ON `catatan_ibu`.`register_id` = `tb_ibu`.`regis_id`
               ORDER BY `catatan_ibu`.`id` DESC
             ";
     return $this->db->query($query)->result_array();
@@ -80,6 +80,16 @@ class M_data extends CI_Model {
               ORDER BY `jadwal`.`id` DESC
             ";
     return $this->db->query($query)->result_array();
+  }
+
+  public function get_notifikasi()
+  {
+    $query = "SELECT `tb_register`.*, `user_role`.`nama_role`
+              FROM `tb_register`
+              JOIN `user_role` ON `tb_register`.`user_id` = `user_role`.`id`
+              ORDER BY `tb_register`.`id` DESC
+            ";
+    return $this->db->query($query)->row();
   }
 
 }
